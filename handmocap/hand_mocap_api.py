@@ -304,11 +304,6 @@ class HandMocap:
                                     ortho_trans_pixels
                                 ], 0) / max(img_original.shape), K_viz)[:,
                                                                         None]
-                            print("K_viz", K_viz)
-                            print("ortho_trans_pixels", ortho_trans_pixels)
-                            print("ortho_scale_pixels", ortho_scale_pixels)
-                            print("shape", img_original.shape)
-                            print("t_vec", t_vec)
                             r_hand = np.eye(3)
                             # Sanity check
                             nptype = np.float32
