@@ -1,22 +1,23 @@
 # Copyright (c) Facebook, Inc. and its affiliates.
 # pylint: disable=C0411,broad-except,too-many-statements,too-many-branches,logging-fstring-interpolation,import-error,line-too-long,invalid-name
 
-import os, sys, shutil
-import torch
-import numpy as np
 import cv2
+import numpy as np
+import torch
 from torchvision.transforms import transforms
 
-from handmocap.hand_modules.test_options import TestOptions
-from handmocap.hand_modules.h3dw_model import H3DWModel
-from mocap_utils.coordconv import convert_smpl_to_bbox, convert_bbox_to_oriIm
-
+from homan import manomodel
 from homan.utils.bbox import bbox_wh_to_xy
 from homan.utils.camera import local_to_global_cam
-from homan import manomodel
 
+import os
+import shutil
+import sys
+from handmocap.hand_modules.h3dw_model import H3DWModel
+from handmocap.hand_modules.test_options import TestOptions
+from libyana.camutils import camconvs, project
 from libyana.conversions import npt
-from libyana.camutils import project, camconvs
+from mocap_utils.coordconv import convert_bbox_to_oriIm, convert_smpl_to_bbox
 
 
 class HandMocap:
@@ -303,6 +304,11 @@ class HandMocap:
                                     ortho_trans_pixels
                                 ], 0) / max(img_original.shape), K_viz)[:,
                                                                         None]
+                            print("K_viz", K_viz)
+                            print("ortho_trans_pixels", ortho_trans_pixels)
+                            print("ortho_scale_pixels", ortho_scale_pixels)
+                            print("shape", img_original.shape)
+                            print("t_vec", t_vec)
                             r_hand = np.eye(3)
                             # Sanity check
                             nptype = np.float32
