@@ -311,8 +311,6 @@ class HandMocap:
                                 K.astype(nptype),
                                 rot=r_hand.astype(nptype),
                                 trans=t_vec[:, 0].astype(nptype))
-                            import pudb
-                            pu.db
                         pred_output[hand_type]['camverts'] = camverts
                         pred_output[hand_type][
                             'perspective_trans'] = t_vec.transpose()
