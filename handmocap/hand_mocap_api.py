@@ -82,10 +82,12 @@ class HandMocap:
         if add_margin:
             margin = int(
                 0.3 * (max_y - min_y))  # if use loose crop, change 0.3 to 1.0
-            min_y = max(min_y - margin, 0)
-            max_y = min(max_y + margin, ori_height)
-            min_x = max(min_x - margin, 0)
-            max_x = min(max_x + margin, ori_width)
+        else:
+            margin = 0
+        min_y = max(min_y - margin, 0)
+        max_y = min(max_y + margin, ori_height)
+        min_x = max(min_x - margin, 0)
+        max_x = min(max_x + margin, ori_width)
 
         img_cropped = img[int(min_y):int(max_y), int(min_x):int(max_x), :]
         new_size = max(max_x - min_x, max_y - min_y)
